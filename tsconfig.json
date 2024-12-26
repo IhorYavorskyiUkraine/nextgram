@@ -3,15 +3,16 @@
       "lib": ["dom", "dom.iterable", "esnext"],
       "allowJs": true,
       "skipLibCheck": true,
-      "strict": true,
       "noEmit": true,
-      "esModuleInterop": true,
-      "moduleResolution": "bundler",
       "resolveJsonModule": true,
       "isolatedModules": true,
-      "target": "esnext",
       "jsx": "preserve",
       "incremental": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "strict": true,
+      "target": "ESNext",
+      "module": "ESNext",
       "plugins": [
          {
             "name": "next"
@@ -20,12 +21,18 @@
       "baseUrl": ".",
       "paths": {
          "@/*": ["src/*"],
-         "@prisma/*": ["src/prisma/*"],
+         "@prisma/*": ["prisma/*"],
          "@ui/*": ["src/components/ui/*"],
-         "@shared/*": ["src/components/shared/*"]
-      },
-      "module": "esnext"
+         "@shared/*": ["src/components/shared/*"],
+         "@types/*": ["src/@types/*"]
+      }
    },
-   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+   "include": [
+      "next-env.d.ts",
+      "**/*.ts",
+      "**/*.tsx",
+      ".next/types/**/*.ts",
+      "prisma/seed.js"
+   ],
    "exclude": ["node_modules"]
 }

@@ -11,7 +11,7 @@ datasource db {
 model User {
    id Int @id @default(autoincrement())
 
-   fullName String
+   userName String
    imageUrl String?
    phone    String?
    email    String  @unique
@@ -23,6 +23,34 @@ model User {
    verificationCode VerificationCode?
    verified         DateTime?
    role             UserRole          @default(USER)
+
+   messages Message[]
+   chats    Chat[]
+
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+}
+
+model Message {
+   id Int @id @default(autoincrement())
+
+   chatId Int
+   chat   Chat @relation(fields: [chatId], references: [id])
+
+   senderId Int
+   sender   User @relation(fields: [senderId], references: [id])
+
+   text String
+
+   createdAt DateTime @default(now())
+}
+
+model Chat {
+   id Int @id @default(autoincrement())
+
+   users User[]
+
+   messages Message[]
 
    createdAt DateTime @default(now())
    updatedAt DateTime @updatedAt

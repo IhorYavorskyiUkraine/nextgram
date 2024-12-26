@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
    title: "NextGram",
-   description: "NextGram is a social media platform built with Next.js.",
+   description: "NextGram is a messenger built with Next.js.",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en">
-         <body>{children}</body>
+         <body className="font-roboto">{children}</body>
       </html>
    );
 }
