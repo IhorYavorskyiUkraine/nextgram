@@ -10,6 +10,10 @@ export default {
          colors: {
             background: "var(--background)",
             foreground: "var(--foreground)",
+            purple: "#8774E1",
+         },
+         backgroundColor: {
+            purple: "#8774E1",
          },
          fontFamily: {
             roboto: ["Roboto", "sans-serif"],

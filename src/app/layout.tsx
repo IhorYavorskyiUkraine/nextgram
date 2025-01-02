@@ -1,3 +1,4 @@
+import { Providers } from "@/components/shared";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en">
-         <body className="font-roboto">{children}</body>
+         <body className="bg-[#212121] font-roboto">
+            <Providers>{children}</Providers>
+         </body>
       </html>
    );
 }

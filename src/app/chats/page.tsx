@@ -1,16 +1,28 @@
-import Image from "next/image";
+import { getUserSession } from "@/lib/getUserSession";
+import { prisma } from "@prisma/PrismaClient";
+import { redirect } from "next/navigation";
+import { ChatMain } from "./components/ChatMain";
 
-export default function Chats() {
+export default async function ChatsPage() {
+   const auth = await getUserSession();
+
+   if (!auth) {
+      redirect("/auth");
+   }
+
+   const chats = await prisma.chat.findMany({
+      where: {
+         users: { some: { id: Number(auth.id) } },
+      },
+      include: {
+         users: true,
+         messages: true,
+      },
+   });
+
    return (
-      <div>
-         <h1>NextGram</h1>
-         <p>NextGram is a social media platform built with Next.js.</p>
-         <Image
-            src="/nextgram.png"
-            alt="NextGram logo"
-            width={200}
-            height={200}
-         />
+      <div className="flex h-full flex-1 flex-col bg-[#212121] p-2">
+         <ChatMain chats={chats} />
       </div>
    );
 }
